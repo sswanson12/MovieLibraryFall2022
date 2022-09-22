@@ -25,4 +25,13 @@ public class Movie
         get => _genres;
         set => _genres = value ?? throw new ArgumentNullException(nameof(value));
     }
+
+    public override string ToString()
+    {
+        var returnString = $"Id: {Id} - Title: {_title} - Genre(s): ";
+
+        returnString = _genres.Aggregate(returnString, (current, genre) => current + $"{genre}, ");
+
+        return returnString[..^2];
+    }
 }

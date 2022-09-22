@@ -18,4 +18,9 @@ public class Library : ILibrary
     {
         _movieLibrary.Add(movie);
     }
+
+    public void Empty()
+    {
+        _movieLibrary.Clear();
+    }
 }
