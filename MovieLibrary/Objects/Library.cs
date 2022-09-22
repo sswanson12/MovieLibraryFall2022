@@ -23,7 +23,9 @@ public class Library : ILibrary
         {
             return false;
         }
-        
+
+        movie.Id = _librarian.IssueId(_movieLibrary);
+
         _movieLibrary.Add(movie);
 
         return true;

@@ -8,6 +8,11 @@ public class Librarian : ILibrarian
         return library.Any(existingMovie => movie.Id == existingMovie.Id);
     }
 
+    public int IssueId(List<Movie> library)
+    {
+        return library.Last().Id + 1;
+    }
+    
     public bool SearchTitle(string title)
     {
         //Method will not be accessible from MainService until needed.

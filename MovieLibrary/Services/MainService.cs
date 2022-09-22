@@ -88,14 +88,6 @@ public class MainService : IMainService
 
         do
         {
-            //I just wanted to get this working fully so I'm going to ask for the ID for now
-            Console.WriteLine("Please enter the movies ID (Must be a number): ");
-
-            while (!TryParse(Convert.ToString(Console.ReadLine()), out id))
-            {
-                Console.WriteLine("Only numbers are allowed. Please try again.");
-            }
-
             Console.Write("Please enter the year the movie was released: ");
             int releaseYear;
             
@@ -130,6 +122,6 @@ public class MainService : IMainService
 
                 genreList.Add(currentGenre);
             }
-        } while (!_library.AddMedia(new Movie(id, newTitle, genreList)));
+        } while (!_library.AddMedia(new Movie(-1, newTitle, genreList)));
     }
 }
