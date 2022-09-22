@@ -1,6 +1,7 @@
 ﻿using System.Xml;
 using MovieLibrary.Objects;
 using MovieLibrary.Services.DataServices;
+using static System.Int32;
 
 namespace MovieLibrary.Services;
 
@@ -21,9 +22,9 @@ public class MainService : IMainService
                           "\nPress the corresponding key and enter to interact with the menu below" +
                           "\n(1) Read Movies From File" +
                           "\n(2) Write A Movie To File" +
-                          "\n(X) Quit");
+                          "\n(x) Quit");
 
-        var userInput = Console.ReadLine()?.ToUpper();
+        var userInput = Console.ReadLine()?.ToLower();
         var persist = true;
 
         do
@@ -36,7 +37,7 @@ public class MainService : IMainService
                 case "2":
                     Write();
                     break;
-                case "X":
+                case "x":
                     persist = false;
                     break;
             }
@@ -44,9 +45,9 @@ public class MainService : IMainService
             Console.WriteLine("Would you like to continue?" +
                               "\n(1) Read Movies From File" +
                               "\n(2) Write A Movie To File" +
-                              "\n(X) QUit");
+                              "\n(x) QUit");
 
-            userInput = Console.ReadLine()?.ToUpper();
+            userInput = Console.ReadLine()?.ToLower();
 
         } while (persist);
     }
@@ -59,10 +60,14 @@ public class MainService : IMainService
         {
             Console.WriteLine(_library.GetLibrary()[i].ToString());
         }
+        
+        _library.Empty();
     }
 
     private void Write()
     {
+        _dataService.Read(_library);
+        
         CreateMovie();
 
         _dataService.Write(_library);
@@ -72,12 +77,27 @@ public class MainService : IMainService
 
     private void CreateMovie()
     {
+        int id;
         string? newTitle;
         var genreList = new List<string>();
+
         do
         {
+            //I just wanted to get this working fully so I'm going to ask for the ID for now
+            Console.WriteLine("Please enter the movies ID (Must be a number): ");
+
+            while (!TryParse(Convert.ToString(Console.ReadLine()), out id))
+            {
+                Console.WriteLine("Only numbers are allowed. Please try again.");
+            }
+
             Console.Write("Please enter the year the movie was released: ");
-            var releaseYear = Console.ReadLine();
+            int releaseYear;
+            
+            while (!TryParse(Convert.ToString(Console.ReadLine()), out releaseYear))
+            {
+                Console.WriteLine("Only numbers are allowed. Please try again.");
+            }
 
             Console.Write("Please enter the movie title: ");
             newTitle = Convert.ToString(Console.ReadLine());
@@ -105,6 +125,6 @@ public class MainService : IMainService
 
                 genreList.Add(currentGenre);
             }
-        } while (!_library.AddMedia(new Movie(-1, newTitle, genreList)));
+        } while (!_library.AddMedia(new Movie(id, newTitle, genreList)));
     }
 }

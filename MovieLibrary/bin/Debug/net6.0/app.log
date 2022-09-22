@@ -422,3 +422,10 @@
 2022-09-21T21:21:01.8242598-05:00	INFO	[MovieLibrary.Services.DataServices.IDataService]	[0]	Reading to movie library
 2022-09-21T21:29:24.3015460-05:00	INFO	[MovieLibrary.Services.DataServices.IDataService]	[0]	Reading to movie library
 2022-09-22T17:36:55.7344648-05:00	INFO	[MovieLibrary.Services.DataServices.IDataService]	[0]	Writing Movie Library
+2022-09-22T17:52:22.1905760-05:00	INFO	[MovieLibrary.Services.DataServices.IDataService]	[0]	Reading to movie library
+2022-09-22T17:54:37.4990975-05:00	INFO	[MovieLibrary.Services.DataServices.IDataService]	[0]	Reading to movie library
+2022-09-22T17:55:40.6878240-05:00	INFO	[MovieLibrary.Services.DataServices.IDataService]	[0]	Reading to movie library
+2022-09-22T17:56:05.0270365-05:00	INFO	[MovieLibrary.Services.DataServices.IDataService]	[0]	Reading to movie library
+2022-09-22T18:16:32.9837080-05:00	INFO	[MovieLibrary.Services.DataServices.IDataService]	[0]	Reading to movie library
+2022-09-22T18:16:44.8079111-05:00	INFO	[MovieLibrary.Services.DataServices.IDataService]	[0]	Reading to movie library
+2022-09-22T18:17:38.7686820-05:00	INFO	[MovieLibrary.Services.DataServices.IDataService]	[0]	Writing Movie Library
