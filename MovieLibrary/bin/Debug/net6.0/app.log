@@ -429,3 +429,8 @@
 2022-09-22T18:16:32.9837080-05:00	INFO	[MovieLibrary.Services.DataServices.IDataService]	[0]	Reading to movie library
 2022-09-22T18:16:44.8079111-05:00	INFO	[MovieLibrary.Services.DataServices.IDataService]	[0]	Reading to movie library
 2022-09-22T18:17:38.7686820-05:00	INFO	[MovieLibrary.Services.DataServices.IDataService]	[0]	Writing Movie Library
+2022-09-22T18:20:55.9293017-05:00	INFO	[MovieLibrary.Services.DataServices.IDataService]	[0]	Reading to movie library
+2022-09-22T18:20:59.2783660-05:00	INFO	[MovieLibrary.Services.DataServices.IDataService]	[0]	Reading to movie library
+2022-09-22T18:21:24.9942655-05:00	INFO	[MovieLibrary.Services.DataServices.IDataService]	[0]	Writing Movie Library
+2022-09-22T18:23:02.4369179-05:00	INFO	[MovieLibrary.Services.DataServices.IDataService]	[0]	Reading to movie library
+2022-09-22T18:23:28.1216300-05:00	INFO	[MovieLibrary.Services.DataServices.IDataService]	[0]	Writing Movie Library

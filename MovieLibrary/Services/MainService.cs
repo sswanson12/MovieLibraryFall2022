@@ -49,6 +49,11 @@ public class MainService : IMainService
 
             userInput = Console.ReadLine()?.ToLower();
 
+            if (userInput != null && userInput.Equals("x"))
+            {
+                persist = false;
+            }
+
         } while (persist);
     }
 

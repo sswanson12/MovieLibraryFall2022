@@ -46,11 +46,11 @@ public class FileService : IDataService
 
         var libraryList = library.GetLibrary();
         
-        sw.WriteLine("Movie ID,Movie Title (Release),Genres");
+        sw.Write("Movie ID,Movie Title (Release),Genres");
 
         foreach (var movie in libraryList)
         {
-            sw.Write(_translator.ToCsv(movie));
+            sw.Write($"\n{_translator.ToCsv(movie)}");
         }
 
         sw.Close();
