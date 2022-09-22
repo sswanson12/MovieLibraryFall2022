@@ -2,10 +2,10 @@
 
 public class Movie
 {
-    private string _title;
+    private string? _title;
     private List<string> _genres;
 
-    public Movie(int movieId, string title, List<string> genres)
+    public Movie(int movieId, string? title, List<string> genres)
     {
         Id = movieId;
         _title = title;
@@ -14,7 +14,7 @@ public class Movie
 
     public int Id { get; set; }
 
-    public string Title
+    public string? Title
     {
         get => _title;
         set => _title = value ?? throw new ArgumentNullException(nameof(value));

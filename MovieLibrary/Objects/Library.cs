@@ -2,10 +2,13 @@
 
 public class Library : ILibrary
 {
+    private readonly ILibrarian _librarian;
+    
     private readonly List<Movie> _movieLibrary;
 
-    public Library()
+    public Library(ILibrarian librarian)
     {
+        _librarian = librarian;
         _movieLibrary = new List<Movie>();
     }
 
@@ -14,9 +17,9 @@ public class Library : ILibrary
         return _movieLibrary;
     }
 
-    public void AddMedia(Movie movie)
+    public bool AddMedia(Movie movie)
     {
-        _movieLibrary.Add(movie);
+        
     }
 
     public void Empty()

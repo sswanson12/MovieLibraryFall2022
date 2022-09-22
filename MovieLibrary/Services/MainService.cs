@@ -25,7 +25,7 @@ public class MainService : IMainService
 
         var userInput = Console.ReadLine()?.ToUpper();
         var persist = true;
-        
+
         do
         {
             switch (userInput)
@@ -54,7 +54,7 @@ public class MainService : IMainService
     private void Read()
     {
         _dataService.Read(_library);
-        
+
         for (int i = 0; i < 25; i++)
         {
             Console.WriteLine(_library.GetLibrary()[i].ToString());
@@ -63,15 +63,48 @@ public class MainService : IMainService
 
     private void Write()
     {
-        _library.AddMedia(CreateMovie());
+        CreateMovie();
 
         _dataService.Write(_library);
-        
+
         _library.Empty();
     }
 
-    private Movie CreateMovie()
+    private void CreateMovie()
     {
-        
+        string? newTitle;
+        var genreList = new List<string>();
+        do
+        {
+            Console.Write("Please enter the year the movie was released: ");
+            var releaseYear = Console.ReadLine();
+
+            Console.Write("Please enter the movie title: ");
+            newTitle = Convert.ToString(Console.ReadLine());
+
+            while (newTitle is {Length: <= 0})
+            {
+                Console.Write("Looks like you left the title blank! Please try again: ");
+                newTitle = Convert.ToString(Console.ReadLine());
+            }
+
+            newTitle = $"{newTitle} ({releaseYear})";
+
+            Console.Write("Please enter all the movie's genres (when done entering, enter (x) to exit): ");
+
+            while (true)
+            {
+                var currentGenre = Convert.ToString(Console.ReadLine());
+                while (currentGenre is null)
+                {
+                    Console.Write("Looks like you left a blank genre! Please try again: ");
+                    currentGenre = Convert.ToString(Console.ReadLine());
+                }
+
+                if (currentGenre.ToLower().Equals("x")) break;
+
+                genreList.Add(currentGenre);
+            }
+        } while (!_library.AddMedia(new Movie(-1, newTitle, genreList)));
     }
 }

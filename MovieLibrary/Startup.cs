@@ -23,6 +23,7 @@ internal class Startup
         services.AddSingleton<ITranslatorService, CsvTranslatorService>();
         services.AddSingleton<IDataService, FileService>();
         services.AddSingleton<ILibrary, Library>();
+        services.AddSingleton<ILibrarian, Librarian>();
 
         return services.BuildServiceProvider();
     }

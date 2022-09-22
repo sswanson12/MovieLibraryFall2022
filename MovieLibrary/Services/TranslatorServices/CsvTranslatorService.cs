@@ -15,7 +15,7 @@ public class CsvTranslatorService : ITranslatorService
 
     public Movie FromCsv(string movieString)
     {
-        var lineSplitUp = movieString.Split(',');
+        string?[] lineSplitUp = movieString.Split(',');
 
         var genresSplitUp = lineSplitUp[2].Split('|');
 
