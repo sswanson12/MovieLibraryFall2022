@@ -19,7 +19,14 @@ public class Library : ILibrary
 
     public bool AddMedia(Movie movie)
     {
+        if (_librarian.CheckId(movie, _movieLibrary))
+        {
+            return false;
+        }
         
+        _movieLibrary.Add(movie);
+
+        return true;
     }
 
     public void Empty()

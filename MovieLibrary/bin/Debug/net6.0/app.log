@@ -421,3 +421,4 @@
 2022-09-21T21:21:01.7421819-05:00	INFO	[MovieLibrary.Services.DataServices.IDataService]	[0]	Reading to movie library
 2022-09-21T21:21:01.8242598-05:00	INFO	[MovieLibrary.Services.DataServices.IDataService]	[0]	Reading to movie library
 2022-09-21T21:29:24.3015460-05:00	INFO	[MovieLibrary.Services.DataServices.IDataService]	[0]	Reading to movie library
+2022-09-22T17:36:55.7344648-05:00	INFO	[MovieLibrary.Services.DataServices.IDataService]	[0]	Writing Movie Library

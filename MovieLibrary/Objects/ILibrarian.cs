@@ -3,7 +3,7 @@
 public interface ILibrarian
 {
     //Sees if ID already exists in library
-    bool CheckId(Movie movie);
+    bool CheckId(Movie movie, List<Movie> library);
 
     //Ask Mark about that thing where you can return two types to return if the movie exists, and return the movie
     //This doesn't need to be implemented until the abstract assignment. But that is due next week so I'll implement

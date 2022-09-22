@@ -2,25 +2,10 @@
 
 public class Librarian : ILibrarian
 {
-    private ILibrary _library;
-
-    public Librarian(ILibrary library)
-    {
-        _library = library;
-    }
-    
-    public bool CheckId(Movie movie)
+    public bool CheckId(Movie movie, List<Movie> library)
     {
         //Returns false if no ID matches in the library.
-        foreach (var existingMovie in _library.GetLibrary())
-        {
-            if (movie.Id == existingMovie.Id)
-            {
-                return true;
-            }
-        }
-        
-        return false;
+        return library.Any(existingMovie => movie.Id == existingMovie.Id);
     }
 
     public bool SearchTitle(string title)

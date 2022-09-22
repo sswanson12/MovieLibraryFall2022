@@ -17,11 +17,13 @@ public class CsvTranslatorService : ITranslatorService
     {
         string?[] lineSplitUp = movieString.Split(',');
 
-        var genresSplitUp = lineSplitUp[2].Split('|');
+        var genresSplitUp = lineSplitUp[2]?.Split('|');
 
         var genresList = new List<string>();
 
-        foreach (var genre in genresSplitUp) genresList.Add(genre);
+        if (genresSplitUp != null)
+            foreach (var genre in genresSplitUp)
+                genresList.Add(genre);
 
         return new Movie(Convert.ToInt32(lineSplitUp[0]), lineSplitUp[1], genresList);
     }
