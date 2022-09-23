@@ -21,13 +21,21 @@ public class Librarian : ILibrarian
         //return library.Last().Id + 1;
     }
     
-    public bool SearchTitle(string title)
+    public bool SearchTitle(string title, List<Movie?> library, out Movie? result)
     {
         //Method will not be accessible from MainService until needed.
-        throw new NotImplementedException();
+
+        foreach (var movie in library.Where(movie => movie?.Title != null && movie.Title.Contains(title)))
+        {
+            result = movie;
+            return true;
+        }
+
+        result = null;
+        return false;
     }
 
-    public List<Movie> SearchGenre(string genre)
+    public List<Movie> SearchGenre(string genre, List<Movie> library)
     {
         //Method will not be accessible unless I actually decide to implement it on top of the assignment.
         throw new NotImplementedException();

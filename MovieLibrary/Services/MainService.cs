@@ -1,5 +1,4 @@
-﻿using System.Xml;
-using MovieLibrary.Objects;
+﻿using MovieLibrary.Objects;
 using MovieLibrary.Services.DataServices;
 using static System.Int32;
 
@@ -82,7 +81,6 @@ public class MainService : IMainService
 
     private void CreateMovie()
     {
-        int id;
         string? newTitle;
         var genreList = new List<string>();
 
@@ -122,6 +120,6 @@ public class MainService : IMainService
 
                 genreList.Add(currentGenre);
             }
-        } while (!_library.AddMedia(new Movie(-1, newTitle, genreList)));
+        } while (!_library.AddMedia(new Movie(-1 /*If a movie has id of -1 in file, obvious error*/, newTitle, genreList)));
     }
 }

@@ -4,8 +4,7 @@ using MovieLibrary.Services;
 
 try
 {
-    var startup = new Startup();
-    var serviceProvider = startup.ConfigureServices();
+    var serviceProvider = Startup.ConfigureServices();
     var service = serviceProvider.GetService<IMainService>();
 
     service?.Invoke();

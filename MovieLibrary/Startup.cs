@@ -7,9 +7,9 @@ using MovieLibrary.Services.TranslatorServices;
 
 namespace MovieLibrary;
 
-internal class Startup
+internal static class Startup
 {
-    public IServiceProvider ConfigureServices()
+    public static IServiceProvider ConfigureServices()
     {
         IServiceCollection services = new ServiceCollection();
 
