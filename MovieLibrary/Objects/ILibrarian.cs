@@ -17,5 +17,5 @@ public interface ILibrarian
     //This also will not be implemented yet, however I think this would be something fun to do as a little extra.
     //I could search for whatever movies are in a specific genre, and return that list to be displayed.
     //String.Contains() method might be handy for this!
-    List<Movie> SearchGenre(string genre, List<Movie> library);
+    bool SearchGenre(string genre, List<Movie> library, out List<Movie> results);
 }

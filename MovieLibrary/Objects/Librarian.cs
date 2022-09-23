@@ -35,9 +35,19 @@ public class Librarian : ILibrarian
         return false;
     }
 
-    public List<Movie> SearchGenre(string genre, List<Movie> library)
+    public bool SearchGenre(string genre, List<Movie> library, out List<Movie> results)
     {
-        //Method will not be accessible unless I actually decide to implement it on top of the assignment.
-        throw new NotImplementedException();
+        //Method will not be accessible from MainService unless I decide to fully implement.
+        results = new List<Movie>();
+
+        var resultsFlag = false;
+        
+        foreach (var movie in from movie in library from existingGenre in movie.Genres where existingGenre.Contains(genre) select movie)
+        {
+            resultsFlag = true;
+            results.Add(movie);
+        }
+
+        return resultsFlag;
     }
 }
