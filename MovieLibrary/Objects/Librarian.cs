@@ -10,7 +10,15 @@ public class Librarian : ILibrarian
 
     public int IssueId(List<Movie> library)
     {
-        return library.Last().Id + 1;
+        var newId = library.Last().Id + 1;
+
+        while (library.All(existingMovie => newId != existingMovie.Id))
+        {
+            newId++;
+        }
+        
+        return newId;
+        //return library.Last().Id + 1;
     }
     
     public bool SearchTitle(string title)
