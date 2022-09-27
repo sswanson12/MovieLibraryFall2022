@@ -12,7 +12,7 @@ public class Librarian : ILibrarian
     {
         var newId = library.Last().Id + 1;
 
-        while (library.All(existingMovie => newId != existingMovie.Id))
+        while (library.Any(existingMovie => newId == existingMovie.Id))
         {
             newId++;
         }
