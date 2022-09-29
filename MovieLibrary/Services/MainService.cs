@@ -7,12 +7,12 @@ namespace MovieLibrary.Services;
 public class MainService : IMainService
 {
     private readonly IDataService _dataService;
-    private readonly ILibrary _library;
+    private readonly ILibrary<Movie> _movieLibrary;
 
-    public MainService(IDataService dataService, ILibrary library)
+    public MainService(IDataService dataService, ILibrary<Movie> movieLibrary)
     {
         _dataService = dataService;
-        _library = library;
+        _movieLibrary = movieLibrary;
     }
 
     public void Invoke()
@@ -48,7 +48,7 @@ public class MainService : IMainService
 
             userInput = Console.ReadLine()?.ToLower();
 
-            if (userInput != null && userInput.Equals("x"))
+            if (userInput is "x")
             {
                 persist = false;
             }
@@ -58,25 +58,25 @@ public class MainService : IMainService
 
     private void Read()
     {
-        _dataService.Read(_library);
+        _dataService.Read(_movieLibrary);
 
         for (int i = 0; i < 25; i++)
         {
-            Console.WriteLine(_library.GetLibrary()[i].ToString());
+            Console.WriteLine(_movieLibrary.GetLibrary()[i].ToString());
         }
         
-        _library.Empty();
+        _movieLibrary.Empty();
     }
 
     private void Write()
     {
-        _dataService.Read(_library);
+        _dataService.Read(_movieLibrary);
         
         CreateMovie();
 
-        _dataService.Write(_library);
+        _dataService.Write(_movieLibrary);
 
-        _library.Empty();
+        _movieLibrary.Empty();
     }
 
     private void CreateMovie()
@@ -120,6 +120,6 @@ public class MainService : IMainService
 
                 genreList.Add(currentGenre);
             }
-        } while (!_library.AddMedia(new Movie(-1 /*If a movie has id of -1 in file, obvious error*/, newTitle, genreList)));
+        } while (!_movieLibrary.AddMedia(new Movie(-1 /*If a movie has id of -1 in file, obvious error*/, newTitle, genreList)));
     }
 }

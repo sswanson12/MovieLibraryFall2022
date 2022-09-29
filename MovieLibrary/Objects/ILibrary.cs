@@ -1,10 +1,10 @@
 ﻿namespace MovieLibrary.Objects;
 
-public interface ILibrary
+public interface ILibrary<T>
 {
-    public List<Movie> GetLibrary();
+    List<T> GetLibrary();
 
-    public bool AddMedia(Movie movie);
+    bool AddMedia(T media); 
 
-    public void Empty();
+    void Empty();
 }

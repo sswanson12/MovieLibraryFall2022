@@ -22,7 +22,7 @@ internal static class Startup
         services.AddSingleton<IMainService, MainService>();
         services.AddSingleton<ITranslatorService, CsvTranslatorService>();
         services.AddSingleton<IDataService, FileService>();
-        services.AddSingleton<ILibrary, Library>();
+        services.AddSingleton<ILibrary<Movie>, MoviesLibrary>();
         services.AddSingleton<ILibrarian, Librarian>();
 
         return services.BuildServiceProvider();

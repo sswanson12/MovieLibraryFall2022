@@ -18,7 +18,7 @@ public class FileService : IDataService
         _translator = translator;
     }
 
-    public void Read(ILibrary library)
+    public void Read(ILibrary<Movie> library)
     {
         _logger.Log(LogLevel.Information, "Reading to movie library");
 
@@ -38,9 +38,9 @@ public class FileService : IDataService
         sr.Close();
     }
 
-    public void Write(ILibrary library)
+    public void Write(ILibrary<Movie> library)
     {
-        _logger.Log(LogLevel.Information, "Writing Movie Library");
+        _logger.Log(LogLevel.Information, "Writing movie library to file");
 
         var sw = new StreamWriter(_filePath);
 
@@ -54,5 +54,25 @@ public class FileService : IDataService
         }
 
         sw.Close();
+    }
+
+    public void Read(ILibrary<Video> library)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Write(ILibrary<Video> library)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Read(ILibrary<Show> library)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Write(ILibrary<Show> library)
+    {
+        throw new NotImplementedException();
     }
 }
