@@ -8,11 +8,11 @@ public class VideoCsvTranslatorService : ITranslatorService<Video>
     {
         string?[] lineSplitUp = mediaString.Split(',');
 
-        var regionsSplitUp = lineSplitUp[4].Split('|');
+        var regionsSplitUp = lineSplitUp[4]!.Split('|');
 
         var regionsIntArray = new int[regionsSplitUp.Length];
 
-        for (var i = regionsSplitUp.Length; i > 0; i--)
+        for (var i = regionsSplitUp.Length - 1; i > 0; i--)
         {
             regionsIntArray[i] = Convert.ToInt32(regionsSplitUp[i]);
         }

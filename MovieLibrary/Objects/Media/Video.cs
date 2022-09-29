@@ -23,6 +23,10 @@ public class Video : Media
 
     public override string Display()
     {
-        throw new NotImplementedException();
+        var returnString = $"Id: {Id} - Title: {Title} - Format: {Format} - Length: {Length} - Regions: ";
+
+        returnString = Regions.Aggregate(returnString, (current, region) => current + $"{region}, ");
+
+        return returnString[..^2];
     }
 }

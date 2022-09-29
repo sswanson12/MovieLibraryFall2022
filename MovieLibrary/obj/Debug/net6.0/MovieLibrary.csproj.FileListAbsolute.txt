@@ -28,3 +28,5 @@ D:\WCTC\DotNetDatabase\Week 2\MovieLibrary\MovieLibrary\obj\Debug\net6.0\ref\Mov
 D:\WCTC\DotNetDatabase\Week 2\MovieLibrary\MovieLibrary\obj\Debug\net6.0\MovieLibrary.pdb
 D:\WCTC\DotNetDatabase\Week 2\MovieLibrary\MovieLibrary\obj\Debug\net6.0\MovieLibrary.genruntimeconfig.cache
 D:\WCTC\DotNetDatabase\Week 2\MovieLibrary\MovieLibrary\bin\Debug\net6.0\movies.csv
+D:\WCTC\DotNetDatabase\Week 2\MovieLibrary\MovieLibrary\bin\Debug\net6.0\shows.csv
+D:\WCTC\DotNetDatabase\Week 2\MovieLibrary\MovieLibrary\bin\Debug\net6.0\videos.csv

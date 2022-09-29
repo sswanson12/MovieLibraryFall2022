@@ -26,8 +26,8 @@ public class MainService : IMainService
     {
         Console.WriteLine("=Movie Library=" +
                           "\nPress the corresponding key and enter to interact with the menu below" +
-                          "\n(1) Read Movies From File" +
-                          "\n(2) Write A Movie To File" +
+                          "\n(1) Read Media From Files" +
+                          "\n(2) Write Media To File" +
                           "\n(x) Quit");
 
         var userInput = Console.ReadLine()?.ToLower();
@@ -49,9 +49,9 @@ public class MainService : IMainService
             }
 
             Console.WriteLine("Would you like to continue?" +
-                              "\n(1) Read Movies From File" +
-                              "\n(2) Write A Movie To File" +
-                              "\n(x) QUit");
+                              "\n(1) Read Media From Files" +
+                              "\n(2) Write Media To File" +
+                              "\n(x) Quit");
 
             userInput = Console.ReadLine()?.ToLower();
 
@@ -66,16 +66,69 @@ public class MainService : IMainService
     private void Read()
     {
         _dataService.Read(_movieLibrary);
-
-        for (int i = 0; i < 25; i++)
-        {
-            Console.WriteLine(_movieLibrary.GetLibrary()[i].Display());
-        }
         
+        _dataService.Read(_showLibrary);
+        
+        _dataService.Read(_videoLibrary);
+
+        Console.WriteLine("---------Movies--------");
+
+        foreach (var movie in _movieLibrary.GetLibrary())
+        {
+            Console.WriteLine(movie.Display());
+        }
+
+        Console.WriteLine("\n--------Shows--------");
+        
+        foreach (var show in _showLibrary.GetLibrary())
+        {
+            Console.WriteLine(show.Display());
+        }
+
+        Console.WriteLine("\n---------Videos--------");
+        
+        foreach (var video in _videoLibrary.GetLibrary())
+        {
+            Console.WriteLine(video.Display());
+        }
+
         _movieLibrary.Empty();
+        
+        _showLibrary.Empty();
+        
+        _videoLibrary.Empty();
     }
 
     private void Write()
+    {
+        Console.WriteLine("\nWould you like to:" +
+                          "\n(1) Write a movie" +
+                          "\n(2) Write a show" +
+                          "\n(3) Write a video");
+
+        var repeat = false;
+        
+        do
+        {
+            switch (Console.ReadLine())
+            {
+                case "1":
+                    WriteMovie();
+                    break;
+                case "2":
+                    WriteShow();
+                    break;
+                case "3":
+                    WriteVideo();
+                    break;
+                default:
+                    repeat = true;
+                    break;
+            }
+        } while (repeat);
+    }
+
+    private void WriteMovie()
     {
         _dataService.Read(_movieLibrary);
 
@@ -87,5 +140,33 @@ public class MainService : IMainService
         _dataService.Write(_movieLibrary);
 
         _movieLibrary.Empty();
+    }
+
+    private void WriteShow()
+    {
+        _dataService.Read(_showLibrary);
+
+        while (!_showLibrary.AddMedia(_mediaCreator.CreateShow()))
+        {
+            Console.WriteLine("A show with this ID already exists in the library. Please try again.");
+        }
+
+        _dataService.Write(_showLibrary);
+
+        _showLibrary.Empty();
+    }
+
+    private void WriteVideo()
+    {
+        _dataService.Read(_videoLibrary);
+
+        while (!_videoLibrary.AddMedia(_mediaCreator.CreateVideo()))
+        {
+            Console.WriteLine("A video with this ID already exists in the library. Please try again.");
+        }
+
+        _dataService.Write(_videoLibrary);
+
+        _videoLibrary.Empty();
     }
 }

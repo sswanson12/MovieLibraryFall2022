@@ -24,6 +24,10 @@ public class Show : Media
 
     public override string Display()
     {
-        throw new NotImplementedException();
+        var returnString = $"Id: {Id} - Title: {Title} - Season: {Season} - Episode {Episode} - Writers: ";
+
+        returnString = Writers.Aggregate(returnString, (current, writer) => current + $"{writer}, ");
+
+        return returnString[..^2];
     }
 }
