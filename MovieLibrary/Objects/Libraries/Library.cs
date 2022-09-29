@@ -1,4 +1,4 @@
-﻿namespace MovieLibrary.Objects;
+﻿namespace MovieLibrary.Objects.Libraries;
 
 public abstract class Library<T> : ILibrary<T>
 {

@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MovieLibrary.Objects;
+using MovieLibrary.Objects.Libraries;
+using MovieLibrary.Objects.Media;
 using MovieLibrary.Services;
 using MovieLibrary.Services.DataServices;
 using MovieLibrary.Services.TranslatorServices;
@@ -20,9 +22,14 @@ internal static class Startup
         });
         
         services.AddSingleton<IMainService, MainService>();
-        services.AddSingleton<ITranslatorService, CsvTranslatorService>();
+        services.AddSingleton<ITranslatorService<Movie>, MovieCsvTranslatorService>();
+        services.AddSingleton<ITranslatorService<Show>, ShowCsvTranslatorService>();
+        services.AddSingleton<ITranslatorService<Video>, VideoCsvTranslatorService>();
         services.AddSingleton<IDataService, FileService>();
         services.AddSingleton<ILibrary<Movie>, MoviesLibrary>();
+        services.AddSingleton<ILibrary<Show>, ShowsLibrary>();
+        services.AddSingleton<ILibrary<Video>, VideosLibrary>();
+        services.AddSingleton<IMediaCreator, MediaCreator>();
         services.AddSingleton<ILibrarian, Librarian>();
 
         return services.BuildServiceProvider();

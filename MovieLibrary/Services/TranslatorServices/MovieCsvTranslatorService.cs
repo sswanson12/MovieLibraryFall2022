@@ -1,8 +1,9 @@
 ﻿using MovieLibrary.Objects;
+using MovieLibrary.Objects.Media;
 
 namespace MovieLibrary.Services.TranslatorServices;
 
-public class CsvTranslatorService : ITranslatorService
+public class MovieCsvTranslatorService : ITranslatorService<Movie>
 {
     public string ToCsv(Movie movie)
     {

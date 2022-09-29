@@ -1,4 +1,5 @@
-﻿using MovieLibrary.Objects;
+﻿using MovieLibrary.Objects.Libraries;
+using MovieLibrary.Objects.Media;
 using MovieLibrary.Services.DataServices;
 using static System.Int32;
 
@@ -8,11 +9,17 @@ public class MainService : IMainService
 {
     private readonly IDataService _dataService;
     private readonly ILibrary<Movie> _movieLibrary;
+    private readonly ILibrary<Show> _showLibrary;
+    private readonly ILibrary<Video> _videoLibrary;
+    private readonly IMediaCreator _mediaCreator;
 
-    public MainService(IDataService dataService, ILibrary<Movie> movieLibrary)
+    public MainService(IDataService dataService, ILibrary<Movie> movieLibrary, ILibrary<Show> showLibrary, ILibrary<Video> videoLibrary, IMediaCreator mediaCreator)
     {
         _dataService = dataService;
         _movieLibrary = movieLibrary;
+        _showLibrary = showLibrary;
+        _videoLibrary = videoLibrary;
+        _mediaCreator = mediaCreator;
     }
 
     public void Invoke()
@@ -62,7 +69,7 @@ public class MainService : IMainService
 
         for (int i = 0; i < 25; i++)
         {
-            Console.WriteLine(_movieLibrary.GetLibrary()[i].ToString());
+            Console.WriteLine(_movieLibrary.GetLibrary()[i].Display());
         }
         
         _movieLibrary.Empty();
@@ -71,55 +78,14 @@ public class MainService : IMainService
     private void Write()
     {
         _dataService.Read(_movieLibrary);
-        
-        CreateMovie();
+
+        while (!_movieLibrary.AddMedia(_mediaCreator.CreateMovie()))
+        {
+            Console.WriteLine("A movie with this ID already exists in the library. Please try again.");
+        }
 
         _dataService.Write(_movieLibrary);
 
         _movieLibrary.Empty();
-    }
-
-    private void CreateMovie()
-    {
-        string? newTitle;
-        var genreList = new List<string>();
-
-        do
-        {
-            Console.Write("Please enter the year the movie was released: ");
-            int releaseYear;
-            
-            while (!TryParse(Convert.ToString(Console.ReadLine()), out releaseYear))
-            {
-                Console.WriteLine("Only numbers are allowed. Please try again.");
-            }
-
-            Console.Write("Please enter the movie title: ");
-            newTitle = Convert.ToString(Console.ReadLine());
-
-            while (newTitle is {Length: <= 0})
-            {
-                Console.Write("Looks like you left the title blank! Please try again: ");
-                newTitle = Convert.ToString(Console.ReadLine());
-            }
-
-            newTitle = $"{newTitle} ({releaseYear})";
-
-            Console.Write("Please enter all the movie's genres (when done entering, enter (x) to exit): ");
-
-            while (true)
-            {
-                var currentGenre = Convert.ToString(Console.ReadLine());
-                while (currentGenre is null)
-                {
-                    Console.Write("Looks like you left a blank genre! Please try again: ");
-                    currentGenre = Convert.ToString(Console.ReadLine());
-                }
-
-                if (currentGenre.ToLower().Equals("x")) break;
-
-                genreList.Add(currentGenre);
-            }
-        } while (!_movieLibrary.AddMedia(new Movie(-1 /*If a movie has id of -1 in file, obvious error*/, newTitle, genreList)));
     }
 }

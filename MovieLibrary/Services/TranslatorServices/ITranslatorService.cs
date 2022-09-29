@@ -1,10 +1,11 @@
 ﻿using MovieLibrary.Objects;
+using MovieLibrary.Objects.Media;
 
 namespace MovieLibrary.Services.TranslatorServices;
 
-public interface ITranslatorService
+public interface ITranslatorService<T>
 {
-    public string ToCsv(Movie movie);
-
-    public Movie FromCsv(string movieString);
+    public T FromCsv(string mediaString);
+    
+    public string ToCsv(T movie);
 }

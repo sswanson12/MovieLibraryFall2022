@@ -1,4 +1,6 @@
 ﻿using MovieLibrary.Objects;
+using MovieLibrary.Objects.Libraries;
+using MovieLibrary.Objects.Media;
 using MovieLibrary.Services.TranslatorServices;
 
 namespace MovieLibrary.Services.DataServices;

@@ -1,6 +1,6 @@
-﻿namespace MovieLibrary.Objects;
+﻿namespace MovieLibrary.Objects.Media;
 
-public class Movie
+public class Movie : Media
 {
     private string? _title;
     private List<string> _genres;
@@ -26,7 +26,7 @@ public class Movie
         set => _genres = value ?? throw new ArgumentNullException(nameof(value));
     }
 
-    public override string ToString()
+    public override string Display()
     {
         var returnString = $"Id: {Id} - Title: {_title} - Genre(s): ";
 

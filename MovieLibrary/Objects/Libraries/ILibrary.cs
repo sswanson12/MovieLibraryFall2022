@@ -1,4 +1,4 @@
-﻿namespace MovieLibrary.Objects;
+﻿namespace MovieLibrary.Objects.Libraries;
 
 public interface ILibrary<T>
 {

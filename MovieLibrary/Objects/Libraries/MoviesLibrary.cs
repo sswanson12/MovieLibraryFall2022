@@ -1,23 +1,25 @@
-﻿namespace MovieLibrary.Objects;
+﻿using MovieLibrary.Objects.Media;
 
-public class ShowsLibrary : Library<Show>
+namespace MovieLibrary.Objects.Libraries;
+
+public class MoviesLibrary : Library<Movie>
 {
     private readonly ILibrarian _librarian;
     
-    private readonly List<Show> _library;
+    private readonly List<Movie> _library;
     
-    public ShowsLibrary(ILibrarian librarian)
+    public MoviesLibrary(ILibrarian librarian)
     {
         _librarian = librarian;
-        _library = new List<Show>();
+        _library = new List<Movie>();
     }
 
-    public override List<Show> GetLibrary()
+    public override List<Movie> GetLibrary()
     {
         return _library;
     }
 
-    public override bool AddMedia(Show media)
+    public override bool AddMedia(Movie media)
     {
         if (_librarian.CheckId(media, _library))
         {

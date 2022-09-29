@@ -1,4 +1,6 @@
-﻿namespace MovieLibrary.Objects;
+﻿using MovieLibrary.Objects.Media;
+
+namespace MovieLibrary.Objects;
 
 public interface ILibrarian
 {
