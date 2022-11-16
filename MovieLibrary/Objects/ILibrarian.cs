@@ -17,7 +17,10 @@ public interface ILibrarian
     
     int IssueId(List<Video> library);
     
-    bool SearchTitle(string title, List<Movie?> library, out Movie? result);
+    void SearchTitle(string? searchTitle, List<Movie> library, List<Media.Media> results);
     
-    bool SearchGenre(string genre, List<Movie> library, out List<Movie> results);
+    void SearchTitle(string? searchTitle, List<Show> library, List<Media.Media> results);
+    
+    void SearchTitle(string? searchTitle, List<Video> library, List<Media.Media> results);
+    
 }

@@ -2,23 +2,16 @@
 
 public class Movie : Media
 {
-    private string? _title;
     private List<string> _genres;
 
     public Movie(int movieId, string? title, List<string> genres)
     {
         Id = movieId;
-        _title = title;
+        Title = title;
         _genres = genres;
     }
 
-    public int Id { get; set; }
 
-    public string? Title
-    {
-        get => _title;
-        set => _title = value ?? throw new ArgumentNullException(nameof(value));
-    }
 
     public List<string> Genres
     {
@@ -28,7 +21,7 @@ public class Movie : Media
 
     public override string Display()
     {
-        var returnString = $"Id: {Id} - Title: {_title} - Genre(s): ";
+        var returnString = $"Type: Movie - Id: {Id} - Title: {Title} - Genre(s): ";
 
         returnString = _genres.Aggregate(returnString, (current, genre) => current + $"{genre}, ");
 

@@ -4,10 +4,6 @@ namespace MovieLibrary.Objects.Libraries;
 
 public class MoviesLibrary : Library<Movie>
 {
-    private readonly ILibrarian _librarian;
-    
-    private readonly List<Movie> _library;
-    
     public MoviesLibrary(ILibrarian librarian)
     {
         _librarian = librarian;
@@ -31,6 +27,11 @@ public class MoviesLibrary : Library<Movie>
         _library.Add(media);
 
         return true;
+    }
+
+    public override void Search(string? searchString, List<Media.Media> results)
+    {
+        _librarian.SearchTitle(searchString, _library, results);
     }
 
     public override void Empty()

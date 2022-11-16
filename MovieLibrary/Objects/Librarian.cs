@@ -57,34 +57,19 @@ public class Librarian : ILibrarian
         
         return newId;
     }
-    
-    public bool SearchTitle(string title, List<Movie?> library, out Movie? result)
+
+    public void SearchTitle(string? searchTitle, List<Movie> library, List<Media.Media> results)
     {
-        //Method will not be accessible from MainService until needed.
-
-        foreach (var movie in library.Where(movie => movie?.Title != null && movie.Title.Contains(title)))
-        {
-            result = movie;
-            return true;
-        }
-
-        result = null;
-        return false;
+        results.AddRange(library.Where(media => searchTitle != null && media.Title != null && media.Title.Contains(searchTitle, StringComparison.OrdinalIgnoreCase)));
     }
 
-    public bool SearchGenre(string genre, List<Movie> library, out List<Movie> results)
+    public void SearchTitle(string? searchTitle, List<Show> library, List<Media.Media> results)
     {
-        //Method will not be accessible from MainService unless I decide to fully implement.
-        results = new List<Movie>();
+        results.AddRange(library.Where(media => searchTitle != null && media.Title != null && media.Title.Contains(searchTitle, StringComparison.OrdinalIgnoreCase)));
+    }
 
-        var resultsFlag = false;
-        
-        foreach (var movie in from movie in library from existingGenre in movie.Genres where existingGenre.Contains(genre) select movie)
-        {
-            resultsFlag = true;
-            results.Add(movie);
-        }
-
-        return resultsFlag;
+    public void SearchTitle(string? searchTitle, List<Video> library, List<Media.Media> results)
+    {
+        results.AddRange(library.Where(media => searchTitle != null && media.Title != null && media.Title.Contains(searchTitle, StringComparison.OrdinalIgnoreCase)));
     }
 }

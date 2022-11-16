@@ -28,6 +28,7 @@ public class MainService : IMainService
                           "\nPress the corresponding key and enter to interact with the menu below" +
                           "\n(1) Read Media From Files" +
                           "\n(2) Write Media To File" +
+                          "\n(3) Search Media" +
                           "\n(x) Quit");
 
         var userInput = Console.ReadLine()?.ToLower();
@@ -43,6 +44,9 @@ public class MainService : IMainService
                 case "2":
                     Write();
                     break;
+                case "3":
+                    Search();
+                    break;
                 case "x":
                     persist = false;
                     break;
@@ -51,6 +55,7 @@ public class MainService : IMainService
             Console.WriteLine("Would you like to continue?" +
                               "\n(1) Read Media From Files" +
                               "\n(2) Write Media To File" +
+                              "\n(3) Search Media" +
                               "\n(x) Quit");
 
             userInput = Console.ReadLine()?.ToLower();
@@ -167,6 +172,64 @@ public class MainService : IMainService
 
         _dataService.Write(_videoLibrary);
 
+        _videoLibrary.Empty();
+    }
+
+    private void Search()
+    {
+        _dataService.Read(_movieLibrary);
+        
+        _dataService.Read(_showLibrary);
+        
+        _dataService.Read(_videoLibrary);
+        
+        var resultsList = new List<Media>();
+
+        var persist = true;
+
+        do
+        {
+            Console.WriteLine("Please enter the title you're searching for: ");
+
+            var searchString = Console.ReadLine();
+            
+            _movieLibrary.Search(searchString, resultsList);
+            _showLibrary.Search(searchString, resultsList);
+            _videoLibrary.Search(searchString, resultsList);
+
+            if (resultsList.Count > 0)
+            {
+                var printString = "Results: ";
+                foreach (var media in resultsList)
+                {
+                    printString += $"\n{media.Display()}";
+                }
+
+                Console.WriteLine(printString);
+            }
+            else
+            {
+                Console.WriteLine("No results were found.");
+            }
+
+            resultsList.Clear();
+
+            Console.WriteLine("Would you like to search again?" +
+                              "\nPress (x) to quit, and anything else to search again.");
+
+            var userInput = Console.ReadLine()?.ToLower();
+
+            if (userInput is "x")
+            {
+                persist = false;
+            }
+
+        } while (persist);
+        
+        _movieLibrary.Empty();
+        
+        _showLibrary.Empty();
+        
         _videoLibrary.Empty();
     }
 }

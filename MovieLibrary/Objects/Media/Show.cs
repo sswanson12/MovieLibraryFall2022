@@ -2,11 +2,6 @@
 
 public class Show : Media
 {
-    
-    public int Id { get; set; }
-
-    public string Title { get; set; }
-
     public int Season { get; set; }
 
     public int Episode { get; set; }
@@ -24,7 +19,7 @@ public class Show : Media
 
     public override string Display()
     {
-        var returnString = $"Id: {Id} - Title: {Title} - Season: {Season} - Episode {Episode} - Writers: ";
+        var returnString = $"Type: Show - Id: {Id} - Title: {Title} - Season: {Season} - Episode {Episode} - Writers: ";
 
         returnString = Writers.Aggregate(returnString, (current, writer) => current + $"{writer}, ");
 

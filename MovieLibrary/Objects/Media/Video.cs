@@ -2,10 +2,6 @@
 
 public class Video : Media
 {
-    public int Id { get; set; }
-
-    public string? Title { get; set; }
-
     public string? Format { get; set; }
 
     public int Length { get; set; }
@@ -23,7 +19,7 @@ public class Video : Media
 
     public override string Display()
     {
-        var returnString = $"Id: {Id} - Title: {Title} - Format: {Format} - Length: {Length} - Regions: ";
+        var returnString = $"Type: Video - Id: {Id} - Title: {Title} - Format: {Format} - Length: {Length} - Regions: ";
 
         returnString = Regions.Aggregate(returnString, (current, region) => current + $"{region}, ");
 

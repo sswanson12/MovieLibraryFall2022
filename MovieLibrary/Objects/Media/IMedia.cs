@@ -3,4 +3,6 @@
 public interface IMedia
 {
     string Display();
+
+    string? GetTitle();
 }
